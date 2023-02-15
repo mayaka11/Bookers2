@@ -1,0 +1,12 @@
+<h1>Books#index</h1>
+
+<div>
+    <% @books.each do |book| %>
+
+        <p>Book名：<%= book.title %></p>
+        <p>説明：<%= book.body %></p>
+
+
+
+    <% end %>
+</div>

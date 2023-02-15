@@ -1,0 +1,41 @@
+<h1>users#show</h1>
+  <div>
+        <%= flash[:signed_up] %>
+        <%= flash[:success] %>
+  </div>
+
+<div>
+  <h3>Name</h3>
+  <%= @user.name %>
+  <h3>Opinion</h3>
+  <%= @user.introduction %>
+  <%= link_to icon('fas','user-cog',''),edit_user_path(current_user.id), class: 'nav-link text-black' %>
+
+
+
+</div>
+
+<!-- ユーザーの投稿一覧 -->
+<tbody>
+<% @books.each do |book| %>
+ <tr>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+ </tr>
+
+
+    <% end %>
+
+  </tbody>
+
+  <main>
+        <h3>New Book</h3>
+         <%= form_with model: @book do |f| %>
+            <h4>Title</h4>
+            <%= f.text_field :title %>
+            <h4>Opinion</h4>
+          <%= f.text_area :body %>
+
+          <%= f.submit 'Create Book', class:"btn btn-success" %>
+        <% end %>
+  </main>
