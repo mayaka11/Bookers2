@@ -38,12 +38,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to user_path(@user.id)
-    else
-      flash[:update] = "ユーザー更新失敗"
-      render :edit
-    end
+    @user.update(user_params)
+    redirect_to user_path(@user.id)
   end
 
 

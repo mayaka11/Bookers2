@@ -3,14 +3,16 @@
 
 
 <div>
+  <table class="table table-striped">
   <p>Book名：<%= @book.title %></p>
   <p>説明：<%= @book.body %></p>
+</table>
 
   <% if @book.user == current_user %>
-　 <%= link_to "削除", book_path(@book), method: :delete %>
-  <%= link_to "編集", edit_book_path(@book.id) %>
+　 <%= link_to "削除", book_path(@book), method: :delete, class: "btn  btn-seconday" %>
+  <%= link_to "編集", edit_book_path(@book.id), class: "btn  btn-seconday" %>
 
   <% end %>
+
 </div>
 
- 

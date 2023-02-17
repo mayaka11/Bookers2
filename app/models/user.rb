@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
 
 
-  validates :user_name, uniqueness: true
+  validates :name, uniqueness: true
   validates :name, presence: true
   validates :email, presence: true
 
