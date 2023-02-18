@@ -1,18 +1,42 @@
-<h1>Books#show</h1>
+
+<!-- ユーザーの投稿一覧 -->
+<p id="notice"><%= notice %></p>
+<h1>books#show</h1>
+  <div class="container">
+   <div class="row">
 
 
+     <div class="col-lg-4" style="background-color: orange;">
+    <h3>Name</h3>
 
-<div>
+
+    <h3>New Book</h3>
+         <%= form_with model: @book do |f| %>
+            <h4>Title</h4>
+            <%= f.text_field :title %>
+            <h4>Opinion</h4>
+          <%= f.text_area :body %>
+
+          <%= f.submit 'Create Book', class:"btn btn-success" %>
+        <% end %>
+     </div>
+
+
+<div clas="col-lg-8">
+<table class="table table-striped">
+
+<tr>
   <table class="table table-striped">
-  <p>Book名：<%= @book.title %></p>
-  <p>説明：<%= @book.body %></p>
-</table>
+  <td>Book名：<%= @book.title %></td>
+  <td>説明：<%= @book.body %></td>
+   <% if @book.user == current_user %>
+   <td><%= link_to "編集", edit_book_path(@book.id), class: "btn  btn-seconday" %></td>
+　 <td><%= link_to "削除", book_path(@book), method: :delete, class: "btn  btn-seconday" %></td>
+   </tr>
+   </table>
 
-  <% if @book.user == current_user %>
-　 <%= link_to "削除", book_path(@book), method: :delete, class: "btn  btn-seconday" %>
-  <%= link_to "編集", edit_book_path(@book.id), class: "btn  btn-seconday" %>
-
+   <%= link_to "test", user_path(current_user.id) %>
   <% end %>
 
 </div>
-
+</div>
