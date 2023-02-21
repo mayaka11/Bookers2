@@ -8,6 +8,12 @@
 
      <div class="col-lg-4" style="background-color: orange;">
     <h3>Name</h3>
+        <%= @users %>
+    <h3>Opinion</h3>
+
+        <% if @user == current_user %>
+        <%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: 'nav-link text-black' %>
+        <% end %>
 
 
     <h3>New Book</h3>
@@ -30,8 +36,8 @@
   <td>Book名：<%= @book.title %></td>
   <td>説明：<%= @book.body %></td>
    <% if @book.user == current_user %>
-   <td><%= link_to "編集", edit_book_path(@book.id), class: "btn  btn-seconday" %></td>
-　 <td><%= link_to "削除", book_path(@book), method: :delete, class: "btn  btn-seconday" %></td>
+   <td><%= link_to "編集", edit_book_path(@book.id) %></td>
+　 <td><%= link_to "削除", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
    </tr>
    </table>
 

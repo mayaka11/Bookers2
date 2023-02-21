@@ -10,7 +10,9 @@ class BooksController < ApplicationController
       redirect_to user_path(current_user.id)
       flash[:success] = "投稿が成功しました"
     else
-      render :new
+      @books = Book.all
+      render :index
+
     end
   end
 
@@ -22,6 +24,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+
   end
 
   def edit

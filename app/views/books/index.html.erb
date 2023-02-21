@@ -1,10 +1,63 @@
-<h1>Books#index</h1>
+<!doctype html>
+<html lang="ja">
 
-<div>
-    <% @books.each do |book| %>
-
-        <p>Book名：<%= book.title %></p>
-        <p>説明：<%= book.body %></p>
-
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <% end %>
-</div>
+  </ul>
+<% end %>
+
+
+<h1>Books#index</h1>
+    <div class="container">
+    <div class="row">
+
+    <div class="col-lg-4" style="background-color: orange;">
+
+<h3>Name</h3>
+<h3>Opinion</h3>
+
+<% if @user == current_user %>
+<%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: 'nav-link text-black' %>
+<% end %>
+
+
+<h3>New Book</h3>
+<%= form_with model: @book do |f| %>
+<h4>Title</h4>
+<%= f.text_field :title %>
+<h4>Opinion</h4>
+<%= f.text_area :body %>
+
+<%= f.submit 'Create Book', class:"btn btn-success" %>
+<% end %>
+    </div>
+    </div>
+    </div>
+
+
+    <div clas="col-lg-8">
+    <table class="table">
+    <thead>
+    <tr>
+<td>Book名</td>
+<td>説明</td>
+
+<%=@books.each do |book| %>
+    <table class="table">
+
+<td><%= book.title %></td>
+<td><%= book.body %></td>
+
+
+    </table>
+    </tr>
+    </thead>
+    </table>
+    </div>
+<% end %>
+
+

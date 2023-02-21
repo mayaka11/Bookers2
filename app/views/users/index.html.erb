@@ -1,13 +1,43 @@
+<p id="notice"><%= notice %></p>
 <h1>users#index</h1>
+<div class="container">
+   <div class="row">
 
+
+     <div class="col-lg-4" style="background-color: orange;">
+    <h3>Name</h3>
+     <%= @user.name %>
+  <h3>Opinion</h3>
+
+   <% if @user == current_user %>
+   <%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: 'nav-link text-black' %>
+   <% end %>
+
+
+      <h3>New Book</h3>
+         <%= form_with model: @book do |f| %>
+            <h4>Title</h4>
+            <%= f.text_field :title %>
+            <h4>Opinion</h4>
+          <%= f.text_area :body %>
+
+          <%= f.submit 'Create Book', class:"btn btn-success" %>
+        <% end %>
+     </div>
+
+     <div clas="col-lg-8">
+     <table class="table table-striped">
+
+  <tr>
+  <td>name</td>
 <% @users.each do |user| %>
-
-<side>
-<div class = "col-md-8 offset-md-1">
-  <h2>name</h2>
-  <%= user.name %>
-  <p><%= link_to "show", user_path(user.id) %></p>
-</div>
-</side>
-</main>
+<table class="table table-striped">
+  <td><%= user.name %></td>
+  <td><%= link_to "show", user_path(user.id) %></td>
+</tr>
+</table>
+</table>
 <% end %>
+</div>
+</div>
+</div>

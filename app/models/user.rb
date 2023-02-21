@@ -11,8 +11,12 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
 
-  # nameの文字数は、1文字から20文字まで
-  validates :name,length: { minimum: 2, maximum: 20 }
+  # nameの文字数は、2文字から20文字まで
+  validates :name, length: { minimum: 2, maximum: 20 }
+  validates :name, length: { minimum: 2 } #「2文字以上」
+  validates :name, length: { maximum: 20 } #「75文字以下」
+  validates :introduction, length: { maximum: 50 }  #「50文字以下」
+
 
 
    has_one_attached :book
