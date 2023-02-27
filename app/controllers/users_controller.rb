@@ -16,26 +16,29 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.book_id = current_book.id
     if @user.save
-    flash[:signed_up] = "アカウント登録が完了しました"
     redirect_to books_path(@book.id)
+    flash[:signed_up] = "アカウント登録が完了しました"
     else
       flash[:danger] = "ログインに失敗しました"
       @users = User.all
+      @user = User.all
       render :index
     end
   end
 
 
   def index
-    @user = User.new
     @users = User.all
-
+    @user = current_user
+    @book = Book.new
   end
 
   def show
+
     @user = User.find(params[:id])
-    @books = @user.books
     @book = Book.new
+    @books = @user.books
+
   end
 
 
@@ -43,6 +46,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user.id)
+    flash[:successful] = "プロフィール更新成功"
   end
 
 

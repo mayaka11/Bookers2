@@ -51,7 +51,7 @@
 
           <%= link_to icon('fas','users','users'), users_path, class: 'nav-link text-white' %>
 
-          <%= link_to icon('fas','book','Books'), books_path(current_user.id), class: 'nav-link text-white' %>
+          <%= link_to icon('fas','book','Books'), books_path, class: 'nav-link text-white' %>
 
           <%= link_to icon('fas','sign-out-alt','Log out'), destroy_user_session_path, method: :delete , class: 'nav-link text-white' %>
 

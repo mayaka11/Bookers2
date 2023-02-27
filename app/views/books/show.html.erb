@@ -8,9 +8,9 @@
 
      <div class="col-lg-4" style="background-color: orange;">
     <h3>Name</h3>
-        <%= @users %>
-    <h3>Opinion</h3>
-
+       <%= @user.name %>
+    <h3>Introduction</h3>
+        <%= @user.introduction %>
         <% if @user == current_user %>
         <%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: 'nav-link text-black' %>
         <% end %>

@@ -1,17 +1,19 @@
-<p id="notice"><%= notice %></p>
+
 <h1>users#index</h1>
 <div class="container">
    <div class="row">
 
 
      <div class="col-lg-4" style="background-color: orange;">
+
     <h3>Name</h3>
      <%= @user.name %>
-  <h3>Opinion</h3>
+  <h3>introduction</h3>
+     <%= @user.introduction %>
 
    <% if @user == current_user %>
    <%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: 'nav-link text-black' %>
-   <% end %>
+  <% end %>
 
 
       <h3>New Book</h3>
@@ -31,13 +33,13 @@
   <tr>
   <td>name</td>
 <% @users.each do |user| %>
-<table class="table table-striped">
+
   <td><%= user.name %></td>
   <td><%= link_to "show", user_path(user.id) %></td>
 </tr>
-</table>
-</table>
 <% end %>
+</table>
+
 </div>
 </div>
 </div>
