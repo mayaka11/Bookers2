@@ -1,23 +1,27 @@
 
+<div>
+    <%= flash[:success] %>
+</div>
+
 <!-- ユーザーの投稿一覧 -->
 <p id="notice"><%= notice %></p>
-<h1>books#show</h1>
+ <h2>User info</h2>
   <div class="container">
    <div class="row">
-
-
-     <div class="col-lg-4" style="background-color: orange;">
+     <div class="col-md-3">
     <h3>Name</h3>
        <%= @user.name %>
     <h3>Introduction</h3>
         <%= @user.introduction %>
+    <h3>Image</h3>
+　       <%= image_tag @user.get_profile_image(100,100) %>
         <% if @user == current_user %>
-        <%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: 'nav-link text-black' %>
+        <%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: "nav-link btn btn-outline-secondary" %>
         <% end %>
 
 
-    <h3>New Book</h3>
-         <%= form_with model: @book do |f| %>
+    <h3>New book</h3>
+         <%= form_with model: @newbook do |f| %>
             <h4>Title</h4>
             <%= f.text_field :title %>
             <h4>Opinion</h4>
@@ -27,22 +31,23 @@
         <% end %>
      </div>
 
+ <div class="col-md-8">
+      <h2>Book detai</h2>
+    <table class="table table">
 
-<div clas="col-lg-8">
-<table class="table table-striped">
-
-<tr>
-  <table class="table table-striped">
-  <td>Book名：<%= @book.title %></td>
-  <td>説明：<%= @book.body %></td>
+  <tbody>
+    <td><%= image_tag @user.get_profile_image(100,100) %></td>
+    <td><%= link_to @book.title, book_path(@book.id) %></td>
+    <td><%= @book.body %></td>
    <% if @book.user == current_user %>
-   <td><%= link_to "編集", edit_book_path(@book.id) %></td>
-　 <td><%= link_to "削除", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
-   </tr>
-   </table>
+    <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
+　  <td><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+  </tbody>
 
-   <%= link_to "test", user_path(current_user.id) %>
-  <% end %>
 
+   <%= link_to current_user.name, user_path(current_user.id) %>
+
+ <% end %>
+ </table>
 </div>
 </div>

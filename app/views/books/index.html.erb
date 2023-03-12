@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
+  <%= @book.errors.count %>error prohibited this obj from being saved:
   <ul>
     <% @book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -10,22 +10,24 @@
   </ul>
 <% end %>
 
-
-  <h1>Books#index</h1>
+<p id="notice"><%= notice %></p>
+ <h2>User info</h2>
     <div class="container">
     <div class="row">
-    <div class="col-lg-4" style="background-color: orange;">
+    <div class="col-md-3">
 
   <h3>Name</h3>
    <%= @user.name %>
   <h3>Introduction</h3>
 　 <%= @user.introduction %>
+　 <h3>Image</h3>
+　<%= image_tag @user.get_profile_image(100,100) %>
   <% if @user == current_user %>
-  <%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: 'nav-link text-black' %>
+  <%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: "nav-link btn btn-outline-secondary" %>
 <% end %>
 
 
-  <h3>New Book</h3>
+  <h3>New book</h3>
     <%= form_with model: @book do |f| %>
   <h4>Title</h4>
     <%= f.text_field :title %>
@@ -39,20 +41,26 @@
 
 
 
-   <div clas="col-lg-5">
-  <table class="table">
-     <tr>
-  <td>Book名</td>
-  <td>説明</td>
-    <% @books.each do |book| %>
-  <table class="table">
-
-  <td><%= book.title %></td>
-  <td><%= book.body %></td>
-
-  </tr>
-  </div>
-  </div>
-  </div>
+   <div class="col-md-8">
+     <h2>Books</h2>
+  <table class="table table">
+    <thead>
+        <tr>
+         <th colapan="3"></th>
+         <th>Title</th>
+         <th>Opinion</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+       <th><%= image_tag book.user. get_profile_image(100,100) %></th>
+       <th><%= link_to book.title, book_path(book.id) %></th>
+       <th><%= book.body %></th>
+   </tbody>
+   </div>
 <% end %>
  </table>
+ </div>
+  </div>
+ </div>
+ </div>

@@ -2,9 +2,12 @@ class UsersController < ApplicationController
  before_action :is_matching_login_user, only: [:edit, :update]
 
 
+def change
+  add_index :users, :name, unique: true
+end
+
   def new
     @user = User.new
-
   end
 
   def edit
@@ -17,7 +20,7 @@ class UsersController < ApplicationController
     @user.book_id = current_book.id
     if @user.save
     redirect_to books_path(@book.id)
-    flash[:signed_up] = "アカウント登録が完了しました"
+    flash[:signed_up] = "successfully"
     else
       flash[:danger] = "ログインに失敗しました"
       @users = User.all
@@ -34,28 +37,27 @@ class UsersController < ApplicationController
   end
 
   def show
-
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books
-
   end
-
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
+    if @user.update(user_params)
     redirect_to user_path(@user.id)
-    flash[:successful] = "プロフィール更新成功"
+    flash[:successful] = "Update User　successfully"
+    else
+      flash[:Failed] = "error"
+      render :edit
+    end
   end
-
 
  private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :introduction)
+    params.require(:user).permit(:name, :email, :password, :introduction, :profile_image)
   end
-
 
   def is_matching_login_user
     user_id = params[:id].to_i
@@ -63,6 +65,5 @@ class UsersController < ApplicationController
       redirect_to book_path
     end
   end
-
 
 end
