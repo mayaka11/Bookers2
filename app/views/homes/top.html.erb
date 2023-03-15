@@ -1,6 +1,4 @@
 
-
-
 <h1>welcome to <i class="fas fa-book"></i> Bookers !!</h1>
 <p>In <i class="fas fa-book"></i> Bookers,</p>
 
@@ -19,3 +17,7 @@ about various books!</p>
 
 <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %>
 
+
+  <div>
+       <%= flash[:log_out] %>
+  </div>

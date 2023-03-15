@@ -19,8 +19,8 @@ end
     @user = User.new(user_params)
     @user.book_id = current_book.id
     if @user.save
-    redirect_to books_path(@book.id)
-    flash[:signed_up] = "successfully"
+      redirect_to users_path
+
     else
       flash[:danger] = "ログインに失敗しました"
       @users = User.all
@@ -45,8 +45,8 @@ end
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:successful] = "Update User successfully"
     redirect_to user_path(@user.id)
-    flash[:successful] = "Update User　successfully"
     else
       flash[:Failed] = "error"
       render :edit
@@ -62,7 +62,7 @@ end
   def is_matching_login_user
     user_id = params[:id].to_i
     unless user_id == current_user.id
-      redirect_to book_path
+      redirect_to user_path(current_user)
     end
   end
 

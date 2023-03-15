@@ -10,7 +10,7 @@
 
 <p id="notice"><%= notice %></p>
  <h2>User info</h2>
-    <div class="container">
+    <div class="container px-5 px-sm-0">
     <div class="row">
     <div class="col-md-3">
 
@@ -20,9 +20,9 @@
 　 <%= @user.introduction %>
 　 <h3>Image</h3>
 　<%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user %>
+
   <%= link_to icon('fas','user-cog',''),edit_user_path(@user.id), class: "nav-link btn btn-outline-secondary" %>
-<% end %>
+
 
 
   <h3>New book</h3>
@@ -39,7 +39,7 @@
 
 
 
-   <div class="col-md-8">
+   <div class="col-md-8 offset-md-1">
      <h2>Books</h2>
   <table class="table table">
     <thead>

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
+    flash[:signed_up] = "successfully"
     user_path(current_user.id)
 
   end
@@ -11,6 +12,7 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_out_path_for(resource)
+     flash[:log_out] = " success successfully"
     root_path
   end
 
